@@ -56,6 +56,29 @@ Before you start, make sure you have:
 - **pandoc** installed for the Word-doc export. On macOS: `brew install pandoc`. On Windows: [pandoc.org/installing.html](https://pandoc.org/installing.html). Verify with `pandoc --version`.
 - **A project folder** on your machine. One per brand you audit. Name it after the brand.
 
+### Cost overview
+
+The playbook itself is free. You pay for API credits consumed by tools the audit uses. Most are free or near-free. The one with a meaningful per-run cost is DataForSEO.
+
+| Tool | Subscription model | Typical per-run cost | Role |
+|---|---|---|---|
+| DataForSEO | Pay-as-you-go, no monthly fee | **$1 to $10** | Recommended. Heaviest spender. Powers competitor keyword footprints and SEO diagnostics. |
+| Serper | Free tier gives 2,500 credits | Under $0.50 | Recommended. Effectively free unless you run 100+ audits a month. |
+| Keywords Everywhere | ~$10 one-time for 100K credits | Under $0.50 | Recommended. Used for keyword volume lookups. |
+| Ahrefs | $129+ per month | Optional | Skip unless you already have an account. DataForSEO covers most of the same ground. |
+| Google PageSpeed Insights | Free | $0 | Uses a free Google Cloud API key (`GOOGLE_AI_KEY`). |
+| Google Analytics 4 | Free (your own account) | $0 | Internal tool. Share access via service account. |
+| Google Search Console | Free | $0 | Internal tool. |
+| Google Ads / Meta Ads | Free to read | $0 | Internal tool. Read-only access. |
+| Google Merchant Center | Free to read | $0 | Internal tool. |
+| Shopify Admin | Included in your Shopify plan | $0 | Internal tool. Custom-app token, read scopes. |
+| Klaviyo or Brevo | Included in your existing plan | $0 | Internal tool. Read-only API key. |
+| Microsoft Clarity | Free | $0 | Internal tool. Free project token. |
+
+**Typical total cost per full audit run: $2 to $15** across the paid external tools.
+
+Numbers above are approximate as of April 2026. Pricing changes. When you run the master prompt, Claude will print the credential inventory and offer to look up current sign-up steps and pricing for any tool you're missing, straight from the web.
+
 ### Step 1: Create the project folder
 
 ```bash
@@ -191,7 +214,7 @@ The audit auto-detects which mode applies to your brand and adapts section depth
 
 **Internal-tool access is the single biggest lever for audit depth.** Sections 7, 8, and 9 are legitimate stubs in A1 mode but they unlock real findings only when you share Klaviyo, Microsoft Clarity, GA4, and Shopify access. Plan on spending 30 to 45 minutes after the first run wiring those up if you want the full audit on the next pass.
 
-**API costs are real but small.** A typical full run costs under $10 in DataForSEO credits plus a few cents of Serper. Budget $15 per run to be safe. Keywords Everywhere has a generous free tier and Ahrefs is optional. PageSpeed Insights is free under quota with a valid `GOOGLE_AI_KEY`.
+**API costs are real but small.** A typical full run costs $2 to $15 across the paid external tools. Full breakdown in the Cost overview table in the Setup section.
 
 **The playbook is tuned for premium DTC and will miss on edge cases.** If you sell B2B SaaS, run a service business, or target the mass market, the audit's recommendations will be directionally off. The methodology (competitor audit, SEO gap, AEO presence) still applies; the DTC-specific benchmarks (AOV thresholds, Meta creative formats, Shopify-specific checks) won't.
 
