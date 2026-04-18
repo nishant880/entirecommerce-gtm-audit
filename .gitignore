@@ -1,0 +1,6 @@
+.env
+.env.local
+.DS_Store
+docs/gtm-audit/
+data/gtm-audit/
+*.log
