@@ -277,7 +277,7 @@ Then revise:
 - Write the bullets into the **Cross-cutting themes** block immediately after the Executive Summary.
 - Generate the **Key findings** block (5-7 one-sentence bullets, one per major section).
 - Generate the **Key action items** block (top 5 from Section 10 pulled to the front with a one-line "why this first" tied back to cross-cutting themes).
-- Draft the **Conclusion** block at the end (2-3 short paragraphs: what to do this week, what a paid engagement looks like if the founder wants this run for them, book-a-call CTA at https://entirecommerce.ai/book-a-call).
+- Draft the **Conclusion** block at the end (2-3 short paragraphs: what to do this week, what a paid engagement looks like if the founder wants this run for them, booking CTA at https://entirecommerce.ai/audit).
 
 ---
 
@@ -408,4 +408,4 @@ GTM audit: {Brand Name} ({YYYY-MM-DD}) — {biggest lever in 6 words}
 
 The top 5 items in "Key action items" go to work this week. The "Biggest lever" in Section 10 is your focus until the metric it targets moves. Then re-run the audit (quarterly is enough unless there's been a material shift) and the next biggest lever reveals itself.
 
-Want this run for you on a live engagement with a weekly review cadence, a daily dashboard, and the thirty-plus downstream playbooks across every GTM function? Book a call at https://entirecommerce.ai/book-a-call.
+Want this run for you on a live engagement with a weekly review cadence, a daily dashboard, and the thirty-plus downstream playbooks across every GTM function? Book a call at https://entirecommerce.ai/audit.

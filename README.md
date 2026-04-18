@@ -1,4 +1,4 @@
-# [Want us to run this for you? Book a call →](https://entirecommerce.ai/book-a-call)
+**[Want us to run this for you? Book a call →](https://entirecommerce.ai/audit)**
 
 # Initial GTM Audit Playbook
 
@@ -199,7 +199,7 @@ Work top-to-bottom. Items you'd run first are ordered first.
 - [ ] Report reviewed, top 5 "This week" action items identified
 - [ ] Sections 7, 8, 9 stubs reviewed, decide whether to share internal access for the next run
 - [ ] Re-run quarterly to track whether the biggest lever has moved
-- [ ] Book a call if you'd rather we run this for you on a live engagement: [entirecommerce.ai/book-a-call](https://entirecommerce.ai/book-a-call)
+- [ ] Book a call if you'd rather we run this for you on a live engagement: [entirecommerce.ai/audit](https://entirecommerce.ai/audit)
 
 ---
 
@@ -222,7 +222,7 @@ Built by Nishant Kapoor at EntireCommerce AI.
 
 - **LinkedIn**: [linkedin.com/in/nishantkapoor1](https://www.linkedin.com/in/nishantkapoor1)
 - **Email**: nishant@entirecommerce.co
-- **Book a call**: [entirecommerce.ai/book-a-call](https://entirecommerce.ai/book-a-call)
+- **Book a call**: [entirecommerce.ai/audit](https://entirecommerce.ai/audit)
 - **Full playbook library** (weekly review, SEO audit, CRO review, competitor creative audit, and thirty-plus more): [entirecommerce.ai/playbooks](https://entirecommerce.ai/playbooks)
 
 Use this playbook freely. Share it with other DTC founders. If you ship a case study running it on your brand, tag us. We'll link to it from the site.
