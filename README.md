@@ -14,6 +14,20 @@
 
 ---
 
+<div align="center">
+
+### ⚡ Fastest way to use this playbook
+
+**Paste this document's URL into Claude Code and say:**
+
+> *"Read this and take me through it step by step."*
+
+**Claude will interview you for the business context, walk you through any missing API setup, and run the full audit end-to-end. You don't need to read the rest of this document.**
+
+</div>
+
+---
+
 ## Who This Playbook Is For
 
 This playbook is for three people.
