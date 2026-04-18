@@ -1,4 +1,12 @@
-**[Want us to run this for you? Book a call →](https://entirecommerce.ai/audit)**
+<div align="center">
+
+---
+
+### 🎯 **[Want us to run this for you? Book a call →](https://entirecommerce.ai/audit)**
+
+---
+
+</div>
 
 # Initial GTM Audit Playbook
 
@@ -56,9 +64,11 @@ mkdir my-brand-audit && cd my-brand-audit
 
 Drop the three files from this bundle (CLAUDE.md, gtm-audit.md, README.md) into the folder.
 
-### Step 2: Set up your .env
+### Step 2: Set up your .env (optional: let Claude walk you through)
 
-Create a `.env` file in the project folder. Add the API keys you have. Minimum recommended:
+Create a `.env` file in the project folder. Add the API keys you have. If you're missing any, that's fine: when you run the master prompt in Step 5, Claude will print which tools are configured and which are missing, and offer to look up the current sign-up steps for each missing one. You can wire tools up on first run without leaving the terminal.
+
+Minimum recommended `.env` if you want to set up ahead of time:
 
 ```
 DATAFORSEO_LOGIN=your_login

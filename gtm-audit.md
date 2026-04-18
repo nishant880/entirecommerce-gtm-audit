@@ -76,6 +76,22 @@ Internal tools (your brand's own data)
 
 For each internal tool flagged "not configured", the corresponding section of the report will stub out honestly with a "grant access to populate" note. That is expected behaviour. Missing tools become access-grant items in the final report's checklist.
 
+### Offer setup instructions for missing tools
+
+After printing the inventory, go through each tool flagged "not configured" (External and Internal both). For each one, ask the user:
+
+> "`{Tool}` is not configured. Want me to look up the current sign-up steps and API-key retrieval flow, so you can wire it in and we can populate more of the audit? Answer `yes`, `no`, or `skip all`."
+
+If the user answers `yes`, use WebSearch and WebFetch to pull the current sign-up flow for that specific tool (pricing tiers, free-tier availability, where the API key lives in the account settings, and the exact `.env` variable name this playbook expects). Produce step-by-step instructions the user can follow in ~5 minutes. Include a one-line estimate of credit cost for a typical audit run where known (for example, DataForSEO: under $10 per full run).
+
+If the user answers `no` for a specific tool, skip that one and ask about the next missing tool.
+
+If the user answers `skip all` at any point, stop offering and proceed to Step 3.
+
+After the user adds any new credentials to `.env`, reprint the updated credential inventory before continuing. Confirm the new tool is now flagged "configured".
+
+Never hardcode sign-up URLs or pricing numbers from memory. Pull fresh from the web every time. Sign-up flows, pricing tiers, and UI navigation change frequently.
+
 ---
 
 ## Step 3. Detect the audit mode
