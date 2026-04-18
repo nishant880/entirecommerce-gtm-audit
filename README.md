@@ -74,11 +74,17 @@ AHREFS_API_KEY=your_key_if_you_have_one
 
 **Gotcha #2:** Never commit your `.env` to a public repo. Add `.env` to your `.gitignore` before your first commit.
 
-### Step 3: Fill in CLAUDE.md
+### Step 3: Populate CLAUDE.md (or let Claude interview you)
 
-Open the `CLAUDE.md` file from this bundle and replace every placeholder (anything inside `{curly braces}`) with your brand's specifics. Product, audience, positioning, pricing, catalog, tool stack, competitors, constraints, goals. Every field.
+You have two options:
 
-**Gotcha #3:** Don't skip the competitor URLs. The audit auto-pulls competitor keyword data via DataForSEO. If you don't supply 3 to 5 competitor URLs, Claude will ask for them mid-run or auto-discover them based on the SERPs for your category, the auto-discovery works but your hand-picked list is always sharper.
+**Option A (recommended, fastest):** Leave `CLAUDE.md` as-is. When you run the master prompt in Step 5, Claude will interview you conversationally: brand overview, product, audience, positioning, tool stack, constraints, goals. Claude writes the file for you progressively as you answer. Takes about 10 minutes.
+
+**Option B (DIY):** Open `CLAUDE.md` and replace every `{placeholder}` with your brand's specifics yourself before running the audit. Founder voice, one or two sentences per field.
+
+Either option produces the same end state: a populated `CLAUDE.md` that grounds every playbook you run from this folder.
+
+**Gotcha #3:** However you populate it, the three-to-five competitor URLs are load-bearing. The audit auto-pulls competitor keyword data via DataForSEO in Section 3. Without competitor URLs Claude has to auto-discover them from the SERPs, which usually works but your hand-picked list is always sharper.
 
 ### Step 4: Open Claude Code in the folder
 

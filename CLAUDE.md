@@ -1,8 +1,14 @@
-# Business brief — {Your brand}
+# Business brief: {Your brand}
 
-> This file is a template. Replace every `{placeholder}` with your specifics. Claude Code loads this file automatically on every session start, so the audit (and any other work you run in this folder) is grounded in your business rather than generic DTC assumptions.
+> This file is the business brief Claude Code loads automatically on every session start. It grounds every playbook you run from this folder in your brand's specifics.
 >
-> Keep it tight. One to two sentences per field beats a paragraph. Founder voice beats marketing copy.
+> **Two ways to populate it:**
+>
+> **Option A (fastest, recommended).** Leave the file as-is (or delete it entirely). Run the GTM Audit master prompt and Claude will interview you conversationally, ask every question below, and fill in the file for you as you go. Takes about 10 minutes. You answer questions in plain language; Claude writes the structured brief.
+>
+> **Option B (DIY).** Fill in every `{placeholder}` yourself before running the audit. Keep it tight: one to two sentences per field. Use founder voice over marketing copy.
+>
+> Either way the end state is the same: a populated `CLAUDE.md` that every future playbook (GTM audit, SEO audit, weekly review, etc.) reads from.
 
 ---
 

@@ -1,28 +1,53 @@
-# Initial GTM Audit — Master Prompt
+# Initial GTM Audit: Master Prompt
 
-> Paste this entire file into Claude Code from a folder containing your `CLAUDE.md` (the business brief) and a `.env` (your API keys). Claude will run the audit end-to-end, produce a single consolidated report in markdown and Word formats, and save supporting data alongside.
+> Paste this entire file into Claude Code from a folder containing a `.env` (your API keys). If a `CLAUDE.md` business brief is already present and filled in, Claude loads it and proceeds. Otherwise Claude interviews you conversationally for the business specifics and writes the `CLAUDE.md` for you. Either way, Claude runs the audit end-to-end, produces a single consolidated report in markdown and Word formats, and saves supporting data alongside.
 >
 > Built by Nishant Kapoor at EntireCommerce AI. Version 2, April 2026.
 
 ---
 
-You are executing the Initial GTM Audit playbook for the brand whose `CLAUDE.md` sits in the current working directory. Follow these steps in order. Do not skip steps. Do not invent data. Honour the voice conventions in Step 8.
+You are executing the Initial GTM Audit playbook for the brand in the current working directory. Follow these steps in order. Do not skip steps. Do not invent data. Honour the voice conventions in Step 8.
 
 ---
 
-## Step 1. Read the business brief
+## Step 1. Load or populate the business brief
 
-Read `CLAUDE.md` in the current working directory. That file contains the brand's positioning, product, audience, competitors, pricing, tool stack, and goals. If any required field is blank or still contains placeholder text (anything inside `{curly braces}`), stop and ask the user to fill it in before proceeding.
+Look for `CLAUDE.md` in the current working directory.
 
-Confirm you have at minimum:
-- Brand name
-- Primary URL
-- What the brand sells (one sentence)
-- Core buyer (one sentence)
-- Three to five competitor URLs
-- Ecommerce platform
+**If `CLAUDE.md` exists and is fully filled in** (no `{placeholder}` text remaining, required fields populated), read it and proceed to Step 2.
 
-Missing any of these? Ask the user. Do not guess.
+**If `CLAUDE.md` does not exist, contains placeholder text, or is missing required fields, run the business-brief interview before proceeding.** Do not skip. Do not guess the inputs.
+
+### The business-brief interview
+
+Ask the user the following questions conversationally, one batch at a time. After each batch, write the answers into `CLAUDE.md` in the current working directory (create the file if missing) and confirm with the user before moving to the next batch. This is a progressive save: the file grows as the interview proceeds.
+
+**Batch 1: Brand overview.** Brand name. Primary URL. How long the domain has been live. Ecommerce platform (Shopify, WooCommerce, custom, something else). Geographic focus. Stage (pre-launch, first year, established with trading history, mature).
+
+**Batch 2: Product.** What you sell in one sentence. Price range or AOV. Catalog size (number of active SKUs). Distinctive or patented elements. Margin structure (rough COGS, shipping costs, any surprising margin drags).
+
+**Batch 3: Target audience.** Core buyer in one sentence, in your own words. Secondary buyer if relevant. What they hire the product to do (Jobs-to-be-Done framing). Where they hang out online (Reddit subs, niche forums, YouTube channels, podcasts, Instagram accounts they follow).
+
+**Batch 4: Positioning.** Why you win in one sentence. Three to five competitors the buyer also considers, with URLs (these feed the Section 3 competitor audit directly; without them Section 3 cannot run). Pricing tier vs category median. What you have tried that did not work.
+
+**Batch 5: Tool stack.** Website/CMS. Analytics (GA4 or other). Search Console property. Ad platforms (Meta, Google, TikTok, LinkedIn). Shopping feed (Merchant Center). Email and SMS (Klaviyo, Brevo, Postscript). CRO tools (Clarity, Hotjar, FullStory). Tag management. CRM or back-office (HubSpot, Airtable). AI assistants already in use.
+
+**Batch 6: Constraints and goals.** Capital state (funded, bootstrapped, cash-flow runway). Team size by function. Supply-chain constraints. Regulatory or compliance constraints. Founder time available. Twelve-month revenue goal. The single lever you believe unlocks that goal.
+
+### Minimum required to proceed to Step 2
+
+If after the interview you still do not have these six fields captured, ask again before proceeding:
+
+1. Brand name
+2. Primary URL
+3. What the brand sells (one sentence)
+4. Core buyer (one sentence)
+5. Three to five competitor URLs
+6. Ecommerce platform
+
+Optional fields can be marked as "unknown" or "to be confirmed" in `CLAUDE.md`. Claude will flag any gaps in the final audit report so the founder knows where the audit leaned on incomplete inputs.
+
+Do not invent any value. Ask the user.
 
 ---
 
@@ -49,7 +74,7 @@ Internal tools (your brand's own data)
 - Microsoft Clarity: configured / not configured
 ```
 
-For each internal tool flagged "not configured", the corresponding section of the report will stub out honestly with a "grant access to populate" note. That is expected behaviour, not an error.
+For each internal tool flagged "not configured", the corresponding section of the report will stub out honestly with a "grant access to populate" note. That is expected behaviour. Missing tools become access-grant items in the final report's checklist.
 
 ---
 
@@ -190,7 +215,7 @@ You are a senior DTC audience researcher. Mine public conversations for
 authentic customer language. Compress findings into a one-page brief a
 founder reviews in under 5 minutes and approves or redirects section by section.
 
-## INPUTS (required — refuse if any missing)
+## INPUTS (required; refuse if any missing)
 1. Target audience (1 line)
 2. Their #1 struggle (1 line)
 3. What the brand sells and how it helps (1 line)
@@ -208,7 +233,7 @@ If any input is missing, return: "Unable to proceed without audience, struggle, 
 - For each quote log: platform, approx date, primary emotion, any phrase that
   recurs across multiple quotes.
 
-## DELIVERABLE — THE ONE-PAGER
+## DELIVERABLE: THE ONE-PAGER
 Keep the front page under 500 words.
 
 1. Avatar (≤50 words). Who they are, daily reality, what sits on their mind.
@@ -228,8 +253,8 @@ Keep the front page under 500 words.
    [new frame]." The mental-model update this audience needs to make before
    buying.
 
-## APPENDIX — VERBATIM QUOTES (15)
-Format: `#N "[verbatim]" — [platform], [date] — [primary emotion] — [recurring phrase if any]`
+## APPENDIX: VERBATIM QUOTES (15)
+Format: `#N | "[verbatim]" | [platform], [date] | [primary emotion] | [recurring phrase if any]`
 Save to data/gtm-audit/{YYYY-MM-DD}/audience-voc-mining.md
 
 ## RULES
@@ -269,7 +294,7 @@ Do not write the report yet. Assemble the complete draft of all ten sections as 
 Produce 3 to 5 cross-cutting insight bullets. Each bullet:
 - States the insight in one sentence.
 - Names the sections it spans in brackets at the end.
-- Is a synthesis, not a summary.
+- Is a synthesis of cross-section implications. Each bullet spans multiple sections.
 
 Then revise:
 - **Executive Summary** to lead with the narrative these insights reveal (3-4 sentences total).
@@ -376,7 +401,7 @@ If the current working directory has an `actions.md` file, merge the five items 
 If the folder is a git repo, commit the report, Word doc, data files, and updated actions.md. Commit message format:
 
 ```
-GTM audit: {Brand Name} ({YYYY-MM-DD}) — {biggest lever in 6 words}
+GTM audit: {Brand Name} ({YYYY-MM-DD}): {biggest lever in 6 words}
 ```
 
 ---
