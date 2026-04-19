@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" font-family="-apple-system, 'Poppins', 'Inter', sans-serif">
+  <!-- Background -->
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="10%" r="70%">
+      <stop offset="0%" stop-color="#75e9d2" stop-opacity="0.10"/>
+      <stop offset="60%" stop-color="#75e9d2" stop-opacity="0.00"/>
+    </radialGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111119"/>
+      <stop offset="100%" stop-color="#0d0d14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="#08080d"/>
+  <rect width="1080" height="1080" fill="url(#bgGlow)"/>
+
+  <!-- Top label -->
+  <text x="540" y="96" text-anchor="middle" fill="#75e9d2" font-size="20" font-weight="600" letter-spacing="4" font-family="'Poppins', sans-serif">FREE FOR FOUNDER-LED DTC BRANDS</text>
+
+  <!-- Title -->
+  <text x="540" y="170" text-anchor="middle" fill="#ffffff" font-size="78" font-weight="800" font-family="'Montserrat', sans-serif" letter-spacing="-2">AI GTM Audit</text>
+
+  <!-- Subtitle -->
+  <text x="540" y="220" text-anchor="middle" fill="#9494ad" font-size="24" font-weight="400">Ten-section diagnostic. Ranked action list. Delivered in an hour.</text>
+
+  <!-- 10 cards: 2 cols × 5 rows -->
+  <!-- Card dimensions: w=480 h=112, gap=20, start y=270, center x=40 + 480 + 20 + 480 = 1020; padding 30 each side → margin 30, colWidth 490 -->
+  <!-- Use col1 x=40, col2 x=560. w=480. h=112. row starts: 270, 396, 522, 648, 774 -->
+
+  <g font-family="'Poppins', sans-serif">
+    <!-- 01 Audience -->
+    <g transform="translate(40 270)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">01 · AUDIENCE</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Audience research + actionable insights</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">15 quotes · Reddit, X, Quora · tension, language, positioning</text>
+    </g>
+
+    <!-- 02 Vision -->
+    <g transform="translate(560 270)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">02 · VISION</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Founder vision + biggest-lever hypothesis</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">Constraints · what's been tried · what to bet on next</text>
+    </g>
+
+    <!-- 03 Competitor Audit -->
+    <g transform="translate(40 396)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">03 · COMPETITOR AUDIT</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Actionable competitor gap analysis</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">3-5 teardowns · keywords, ads, whitespace, content gaps</text>
+    </g>
+
+    <!-- 04 SEO -->
+    <g transform="translate(560 396)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">04 · SEO</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Full site health + opportunity map</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">Crawl · keywords · backlinks · Core Web Vitals</text>
+    </g>
+
+    <!-- 05 AEO -->
+    <g transform="translate(40 522)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">05 · AI SEARCH (AEO)</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">AI search visibility + whitespace</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">ChatGPT, Claude, Perplexity, AI Overview · entity clarity</text>
+    </g>
+
+    <!-- 06 Paid Ads -->
+    <g transform="translate(560 522)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">06 · PAID ADS</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Creative fatigue + starter campaigns</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">Meta + Google · competitor creative · 3–5 briefs</text>
+    </g>
+
+    <!-- 07 Email & CRM -->
+    <g transform="translate(40 648)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">07 · EMAIL &amp; CRM</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Flow coverage + deliverability</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">Welcome · abandoned cart · win-back · revenue per flow</text>
+    </g>
+
+    <!-- 08 CRO -->
+    <g transform="translate(560 648)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">08 · CRO</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">PDP + checkout friction audit</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">Heatmaps · rage clicks · funnel dropoff · trust signals</text>
+    </g>
+
+    <!-- 09 Analytics -->
+    <g transform="translate(40 774)">
+      <rect width="480" height="112" rx="14" fill="url(#cardGrad)" stroke="#1a1a24" stroke-width="1"/>
+      <text x="24" y="40" fill="#75e9d2" font-size="14" font-weight="700" letter-spacing="3">09 · ANALYTICS</text>
+      <text x="24" y="74" fill="#ffffff" font-size="22" font-weight="600">Event integrity + attribution</text>
+      <text x="24" y="98" fill="#9494ad" font-size="15">GA4 · Meta Pixel · UTMs · cross-device stitching</text>
+    </g>
+
+    <!-- 10 Cross-pillar synthesis -->
+    <g transform="translate(560 774)">
+      <rect width="480" height="112" rx="14" fill="#75e9d2" stroke="#75e9d2" stroke-width="1"/>
+      <text x="24" y="40" fill="#08080d" font-size="14" font-weight="700" letter-spacing="3">10 · CROSS-PILLAR SYNTHESIS</text>
+      <text x="24" y="74" fill="#08080d" font-size="22" font-weight="700">Correlated insights + highest-leverage moves</text>
+      <text x="24" y="98" fill="#08080d" font-size="15" opacity="0.80">Patterns only visible across pillars · top 5 by ICE</text>
+    </g>
+  </g>
+
+  <!-- Bottom bar: URL + CTA -->
+  <g transform="translate(0 924)">
+    <line x1="40" y1="0" x2="1040" y2="0" stroke="#1a1a24" stroke-width="1"/>
+    <text x="40" y="54" fill="#9494ad" font-size="20" font-weight="500">Delivered as one Word doc + markdown source in your GitHub repo.</text>
+    <text x="40" y="104" fill="#ffffff" font-size="36" font-weight="700" font-family="'Montserrat', sans-serif" letter-spacing="-0.5">entir<tspan fill="#75e9d2">ecommerce.ai</tspan><tspan fill="#9494ad">/audit</tspan></text>
+  </g>
+</svg>
