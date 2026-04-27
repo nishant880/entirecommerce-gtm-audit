@@ -76,6 +76,23 @@ Internal tools (your brand's own data)
 
 For each internal tool flagged "not configured", the corresponding section of the report will stub out honestly with a "grant access to populate" note. That is expected behaviour. Missing tools become access-grant items in the final report's checklist.
 
+### On-page-signal fallback when external SEO tools are unavailable
+
+When DataForSEO, Ahrefs, and Serper are all missing (common on B1 brand-new prospects and A1 established-without-paid-tools audits), keyword research still has to run. The playbook does not stub Section 3 keyword footprint or Section 4C gaps in that scenario. It switches to an on-page-signal fallback.
+
+For each competitor and for the brand itself, WebFetch:
+
+1. Homepage: title tag, meta description, H1, H2 block, schema markup, primary nav anchor text, og:title/description.
+2. Robots.txt and XML sitemap: count indexed-looking paths, log the top 20 URLs by directory prefix.
+3. Top 10 internal-navigation links: anchor text as a proxy for head-term targeting.
+4. Top 5 collection/category pages: title, H1, H2/H3, URL slug components, schema, faceted-filter labels.
+5. Top 5 product or service pages: same extraction plus pricing and trust-signal copy.
+6. Blog/resource index (if present): the 20 newest post titles and slugs.
+
+Produce `fallback-onpage-signals.csv` per domain (page_type, url, title, meta_description, h1, h2_list, slug_tokens, schema_types, nav_anchor_text). Manually assign intent to each page (informational, commercial, transactional, navigational) based on title and H1 patterns. Cluster slug tokens and H1 keywords across competitors to surface the head-term vocabulary the category is using.
+
+Label this output clearly: "on-page signals only; volume, difficulty, and rank position not available without external keyword API access". It is a directional map of what competitors are optimising for, not a ranking audit. Section 4C then runs on whatever keyword data this produces, with the same stub-honesty rule: the founder sees the limitation and the access-grant path to close it.
+
 ### Offer setup instructions for missing tools
 
 After printing the inventory, go through each tool flagged "not configured" (External and Internal both). For each one, ask the user:
@@ -132,7 +149,7 @@ For each of the 3 to 5 competitor URLs from `CLAUDE.md`, produce a full teardown
 
 1. **Technical SEO.** Use WebFetch to scan the competitor's homepage. If DataForSEO is configured, run a light site-audit scan. Note Core Web Vitals if PageSpeed Insights is configured.
 2. **Keyword footprint.** Top 100 ranking keywords, monthly organic traffic estimate, top landing pages. If DataForSEO is configured, pull `labs_ranked_keywords` per competitor domain. If not, WebSearch for "{competitor} ranks for" and synthesise from public SERPs.
-3. **Content gap.** Keywords the competitor ranks for that the brand does not. **Do not use keyword-intersection mode** (known bug). Pull `labs_ranked_keywords` on the brand's domain and each competitor separately, then compute `competitor_keywords - brand_keywords` in Python. Cluster by intent.
+3. **Content gap.** Keywords the competitor ranks for that the brand does not. **Do not use keyword-intersection mode** (known bug). Pull `labs_ranked_keywords` on the brand's domain and each competitor separately, then compute `competitor_keywords - brand_keywords` in Python. Cluster by intent. Save per-competitor CSV as `content-gap-vs-{competitor}.csv` and a top-30-scored shortlist as `content-gap-vs-{competitor}-top30.csv`. After all competitors are processed, proceed to the consolidation step in Section 4C.5. Do not leave per-competitor CSVs as the final artefact; they feed the unioned universe.
 4. **Meta Ad Library scan.** 30-day snapshot of active ads. **Do not use raw WebFetch against facebook.com/ads/library** (JS-rendered, returns empty). Preferred methods in order: Playwright headless-browser script, third-party Meta Ad Library indexes (adscan.ai), manual browser screenshots. If none available, note "Meta Ad Library: unable to verify; manual screenshot pass required" and add to the access-grant checklist.
 5. **Google Ads intel.** If Serper is configured, pull paid SERP copy on the top 20 commercial queries for the category. Log headline patterns, description patterns, sitelink usage, offer language.
 6. **Summary verdict.** Three things this competitor does better. Three things the brand can beat them on. Two paragraphs max.
@@ -147,6 +164,40 @@ Four sub-sections:
 - **4B Backlink and domain authority.** Serper brand-mention scan for unlinked mentions, DataForSEO Backlinks snapshot (referring domains, DR, new and lost links over 90 days). Competitor backlink comparison.
 - **4C Keywords and content gaps.** Top 100 ranking keywords with 90-day trend. Lost keywords (dropped 10+ positions in 90 days). Content gap vs top 3 competitors (same set-difference workaround as Section 3.3). Branded vs non-branded traffic split via GSC if configured.
 - **4D Opportunity patterns.** Check the GSC data (if configured) for each pattern: high impressions with low CTR, striking-distance queries (position 4-15), high impressions with zero clicks, accidental rankings, losing clicks over 90 days, brand query CTR below 50%. Each pattern has a specific action (see pattern table at the end of this step).
+- **4C.5 Industry keyword universe and page-map.** This is the consolidation step. It produces one deduped master dataset covering every query a buyer in the category uses, mapped to a specific Protelicious-or-equivalent page (existing or to-build).
+
+  Inputs: the 3-to-5 per-competitor `content-gap-vs-{competitor}.csv` files from Section 3.3, plus the brand's own ranked keywords, plus (if available) `fallback-onpage-signals.csv` per domain.
+
+  Methodology:
+  1. Read every per-competitor gap CSV. Extract the keyword column from each.
+  2. Union across all competitors using Python `set` or pandas `concat` + `drop_duplicates`. The union is the category universe.
+  3. For each keyword in the union, compute: `num_competitors_ranking` (count of competitors ranking for it in positions 1-50), `aggregate_volume` (max of per-competitor volumes, since the same query has one underlying search volume), `max_difficulty`, `best_competitor_position`, `brand_ranks` (boolean, does the brand rank anywhere in top 100).
+  4. Score each keyword: `opportunity = aggregate_volume × num_competitors_ranking × max(1, 101 - max_difficulty) × (1 if not brand_ranks else 0.3)`. The `(101 - max_difficulty)` factor keeps the score positive across the full 0-100 DataForSEO KD scale; the `max(1, ...)` floor handles any provider edge case. The `0.3` brand-factor deprioritises keywords the brand already ranks for so the universe surfaces whitespace first.
+  5. Classify each keyword's intent: informational (how, what, guide, learn, tutorial, why), commercial (best, top, review, comparison, vs, alternative), transactional (buy, price, shop, order, deal), navigational (brand terms, branded variants). Use keyword pattern-matching; flag ambiguous ones for manual review.
+  6. Cluster keywords by head-term semantic similarity. Rule of thumb: 6-12 clusters per audit, each cluster with 15-150 keywords. Name each cluster by its canonical head term (e.g., "whey protein", "protein ice cream", "high-protein snacks").
+  7. Page-map step. For each cluster:
+     - Does the brand have an existing URL that already targets the cluster's head term? Check via WebFetch on the brand's sitemap or via DataForSEO `labs_domain_intersection` on the cluster's canonical head term.
+     - If yes and mature (ranked top 30 on the head term): action is `expand` — add sub-topic sections, internal links from new sub-pages, PAA answers.
+     - If yes but thin (below position 30): action is `rewrite` — current page exists but is not pulling weight; new angle needed.
+     - If no: action is `build` — specify page type (pillar 2000+ words / comparison hub / FAQ / buying guide / category landing).
+  8. Output artefacts:
+     - `industry-keyword-universe.csv`: every query in the category with volume, difficulty, score, intent, cluster, competitor positions, brand status.
+     - `industry-clusters-page-map.md`: cluster-by-cluster page-map table with existing URL (or "missing"), recommended action, top-5 queries in the cluster, opportunity score, priority rank.
+  9. Inline in the report body: a summary table (cluster, intent, size, existing_page_or_gap, opportunity_score, priority_rank) and the top 10 "build" recommendations in priority order. The detailed universe CSV is linked, not pasted.
+
+  This is the single most operationally useful artefact in the SEO section. It replaces the mental exercise of "read five competitor CSVs and guess" with one ranked category map.
+
+- **4C.6 SERP-feature mining (PAA, related searches, autocomplete).** PAA and related searches are how buyers phrase the real question behind a head term. Autocomplete surfaces long-tail refinements and phrasing variants. All three are retrievable via Serper (and via DataForSEO SERP endpoints as backup).
+
+  For the top 20-30 head-term queries from 4C.5 (by opportunity score, skipping any the brand already ranks #1 for):
+  1. Serper `/search` on each head term. Parse the response for `peopleAlsoAsk[]` (typically 4-8 questions) and `relatedSearches[]` (typically 8-12 suggestions).
+  2. Serper `/autocomplete` on each head term plus two pattern-completions: `{head_term}` (raw), `best {head_term}`, `how to {head_term}`, `{head_term} for [audience token]`.
+  3. Compile into `serp-features-mined.csv`: head_term, feature_type (paa / related / autocomplete), text, implied_intent, semantic_cluster.
+  4. Cluster mined phrases. Many will map to existing 4C.5 clusters; some will surface new long-tail clusters the original gap analysis missed.
+  5. Flag any mined phrase the brand's existing content does not address. These become FAQ-block candidates, H3 section candidates, or new dedicated-page candidates.
+  6. Inline in the report body: 3-5 highest-opportunity new angles surfaced by the mining step, with suggested action.
+
+  The value of this step is that pure ranking data answers "what do competitors rank for". PAA and related searches answer "what does the buyer actually type". They frequently diverge. The mined phrases feed Section 5 (AEO extractable answers), Section 7 (email subject-line candidates), and the Section 10 content backlog.
 
 ### Section 5. AEO (answer-engine optimisation)
 
@@ -442,6 +493,9 @@ GTM audit: {Brand Name} ({YYYY-MM-DD}): {biggest lever in 6 words}
 - Word doc produced alongside the markdown via pandoc.
 - No invented data. Missing internal tools stubbed honestly with access-grant path.
 - Voice enforcement gate run before write. Zero banned-pattern matches in final output.
+- Section 4C.5 produces `industry-keyword-universe.csv` and `industry-clusters-page-map.md` as supporting data. Per-competitor gap CSVs from Section 3.3 remain in the data folder but are not the final SEO artefact.
+- Section 4C.6 produces `serp-features-mined.csv`. At least the top 20 head-term queries from 4C.5 are mined.
+- When DataForSEO, Ahrefs, and Serper are all unavailable, the on-page-signal fallback runs (see Step 2) and `fallback-onpage-signals.csv` is produced per domain. Section 4C is honestly labelled as on-page-signal-only, not ranking-data.
 
 ---
 
